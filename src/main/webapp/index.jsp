@@ -98,7 +98,7 @@
                 <a href="/myPage.members" class="myPage btn btn-primary">My Page</a>
             </c:when>
             <c:otherwise>
-                <a href="/members/login.jsp" class="login btn btn-primary">Login</a>
+                <a href="/login/login.jsp" class="login btn btn-primary">Login</a>
             </c:otherwise>
         </c:choose>
     </header>
