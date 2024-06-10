@@ -53,27 +53,48 @@ public class BoardDAO {
 	}
 	
 	//한 페이지의 글 목록 반환
-	public List<BoardDTO> getList(int n, int m) throws Exception{
-		String sql = "select * from (select board.*, row_number() over(order by seq desc) rown from board) where rown between ? and ?";
-		
-		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
-			pstat.setInt(1, n);
-			pstat.setInt(2, m);
-			try(ResultSet rs = pstat.executeQuery()){
-				List<BoardDTO> list = new ArrayList<>();
-				while (rs.next()) {
-					int seq = rs.getInt(1);
-					String writer = rs.getString(2);
-					String title = rs.getString(3);
-					String contents = rs.getString(4);
-					Timestamp write_date = rs.getTimestamp(5);
+		public List<BoardDTO> getList(int n, int m) throws Exception{
+			String sql = "select * from (select board.*, row_number() over(order by seq desc) rown from board) where rown between ? and ?";
+			
+			try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
+				pstat.setInt(1, n);
+				pstat.setInt(2, m);
+				try(ResultSet rs = pstat.executeQuery()){
+					List<BoardDTO> list = new ArrayList<>();
+					while (rs.next()) {
+						int seq = rs.getInt(1);
+						String writer = rs.getString(2);
+						String title = rs.getString(3);
+						String contents = rs.getString(4);
+						Timestamp write_date = rs.getTimestamp(5);
 
-					BoardDTO ctt = new BoardDTO(seq, writer, title, contents, write_date);
-					list.add(ctt);
+						BoardDTO ctt = new BoardDTO(seq, writer, title, contents, write_date);
+						list.add(ctt);
+					}
+					return list;
 				}
-				return list;
 			}
 		}
-	}
+		
+	
+	// 게시판 글 작성
+	   public int insert(BoardDTO dto) throws Exception {
+
+		      String sql = "insert into board values(board_seq.nextval,?,?,?,sysdate)";
+		      
+		      try (Connection con = this.getConnection(); 
+		    		  PreparedStatement pstat = con.prepareStatement(sql)) {
+
+		         pstat.setString(1, dto.getWriter());
+		         pstat.setString(2, dto.getTitle());
+		         pstat.setString(3, dto.getContent());
+
+		         return pstat.executeUpdate();
+
+		      }
+		   }
+
+	
+
 	
 }
