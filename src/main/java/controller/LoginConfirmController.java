@@ -1,54 +1,52 @@
-//package controller;
-//
-//import java.io.IOException;
-//import java.io.PrintWriter;
-//import java.sql.Timestamp;
-//
-//import javax.servlet.ServletException;
-//import javax.servlet.annotation.WebServlet;
-//import javax.servlet.http.HttpServlet;
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
-//import javax.servlet.http.HttpSession;
-//
-//import com.google.gson.Gson;
-//
-//import commons.util;
-//import dao.MemberDAO;
-//import dto.MemberDTO;
-//
-///**
-// * Servlet implementation class LoginController
-// */
-//@WebServlet("*.login")
-//public class LoginConfirmController extends HttpServlet {
-//
-//
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        request.setCharacterEncoding("UTF-8");
-//        String cmd = request.getRequestURI();
-//        MemberDAO dao = MemberDAO.getInstance();
-//        Gson g = new Gson();
-//        System.out.println(cmd);
-//        
-//        try {
-//            if(cmd.equals("/register.members")) {
-//                String id = request.getParameter("id");
-//                String pw = util.getSHA512(request.getParameter("pw"));
-//                String name = request.getParameter("name");
-//                String phone = request.getParameter("phone");
-//                String email = request.getParameter("email");
-//                String zipcode = request.getParameter("zipcode");
-//                String address1 = request.getParameter("address1");
-//                String address2 = request.getParameter("address2");
-//                String favoriteGame = request.getParameter("favoriteGame"); // 좋아하는 게임 필드 추가
-//                Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-//                System.out.println(favoriteGame);
-//                int result = dao.addMember(new MemberDTO(id, pw, name, phone, email, zipcode, address1, address2, currentTime, favoriteGame));
-//
-//                response.sendRedirect("/index.jsp");
-//            }
-//            
+package controller;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Timestamp;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.google.gson.Gson;
+
+import commons.util;
+import dao.MemberDAO;
+import dto.MemberDTO;
+
+/**
+ * Servlet implementation class LoginController
+ */
+@WebServlet("*.login")
+public class LoginConfirmController extends HttpServlet {
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        String cmd = request.getRequestURI();
+        MemberDAO dao = MemberDAO.getInstance();
+        Gson g = new Gson();
+        System.out.println(cmd);
+        
+        try {
+            if(cmd.equals("/register.login")) {
+                String id = request.getParameter("id");
+                String pw = util.getSHA512(request.getParameter("pw"));
+                String name = request.getParameter("name");
+                String phone = request.getParameter("phone");
+                String email = request.getParameter("email");
+                String gender = request.getParameter("gender");
+                Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+                String profile_img = request.getParameter("profile_img");
+                int user_level = Integer.parseInt(request.getParameter("user_level"));
+                int result = dao.registerMember(new MemberDTO(id, pw, name, phone, email, gender, currentTime, profile_img, user_level));
+
+                response.sendRedirect("/index.jsp");
+            }
+            
 //            if(cmd.equals("/idCheck.members")) {
 //                String id = request.getParameter("id");
 //                System.out.println(id);
@@ -62,7 +60,7 @@
 //    			pw.append(result1);
 //
 //            }
-//            
+            
 //            if(cmd.equals("/login.members")) {
 //                String id = request.getParameter("id");
 //                String pw = util.getSHA512(request.getParameter("pw"));
@@ -124,16 +122,16 @@
 //                
 //                response.sendRedirect("/myPage.members");
 //            }
-//        } catch(Exception e) {
-//            e.printStackTrace();
-//            response.sendRedirect("error.jsp");
-//        }
-//        
-//	}
-//
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//
-//		doGet(request, response);
-//	}
-//
-//}
+        } catch(Exception e) {
+            e.printStackTrace();
+            response.sendRedirect("error.jsp");
+        }
+        
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		doGet(request, response);
+	}
+
+}
