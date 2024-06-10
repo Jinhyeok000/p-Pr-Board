@@ -188,7 +188,7 @@
 		$("#idCheck").on("click", function(){
 			let idValue = $("#id").val();
 			$.ajax({
-				url:"/idCheck.members",
+				url:"/idCheck.login",
 				type: "get",
 				dataType:"json",
 				data:{

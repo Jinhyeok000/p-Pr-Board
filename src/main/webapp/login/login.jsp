@@ -85,7 +85,7 @@
             <button type="submit">로그인</button>
         </form>
         <a href="/login/findID.jsp">아이디를 잊어버리셨나요?</a>
-        <a href="/members/realFindPassword.jsp">비밀번호를 잊어버리셨나요?</a>
+        <a href="#">비밀번호를 잊어버리셨나요?</a>
         <div class="social-login">
             <img src="/images/google_login.png" alt="Google">
             <img src="/images/kakao_login.png" alt="Kakao">

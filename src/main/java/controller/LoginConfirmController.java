@@ -47,41 +47,40 @@ public class LoginConfirmController extends HttpServlet {
                 response.sendRedirect("/index.jsp");
             }
             
-//            if(cmd.equals("/idCheck.members")) {
-//                String id = request.getParameter("id");
-//                System.out.println(id);
-//                boolean result = dao.findId(id);
-//                System.out.println(id);
-//                System.out.println(result);
-//                
-//                String result1 = g.toJson(result);
-//    			PrintWriter pw = response.getWriter();
-//    			
-//    			pw.append(result1);
-//
-//            }
+            if(cmd.equals("/idCheck.login")) {
+                String id = request.getParameter("id");
+                System.out.println(id);
+                boolean result = dao.findId(id);
+                System.out.println(id);
+                System.out.println(result);
+                
+                String result1 = g.toJson(result);
+    			PrintWriter pw = response.getWriter();
+    			
+    			pw.append(result1);
+
+            }
             
             if(cmd.equals("/login.login")) {
                 String id = request.getParameter("id");
                 String pw = util.getSHA512(request.getParameter("pw"));
-                MemberDTO dto = dao.selectAll(id);
-                String name = dto.getName();
+
                 
                 boolean result = dao.loginId(id, pw);
+                System.out.println(result);
                 if(result) {
                     HttpSession session = request.getSession();
                     session.setAttribute("loginID", id);
-                    session.setAttribute("loginName", name);
                    
                 }
                 response.sendRedirect("/index.jsp");
             }
-//
-//            if(cmd.equals("/logout.members")) {
-//                HttpSession session = request.getSession();
-//                session.invalidate();
-//                response.sendRedirect("/index.jsp");
-//            }
+
+            if(cmd.equals("/logout.login")) {
+                HttpSession session = request.getSession();
+                session.invalidate();
+                response.sendRedirect("/index.jsp");
+            }
 //            
 //            if(cmd.equals("/memberout.members")) {
 //                HttpSession session = request.getSession();

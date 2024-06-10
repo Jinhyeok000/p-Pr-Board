@@ -89,6 +89,7 @@
     </style>
 </head>
 <body>
+	${loginID}
     <header class="header">
         <div class="logo">
             <img src="images/GameWorldLogo.png" alt="GameWorld Logo">
@@ -107,7 +108,6 @@
         <c:choose>
             <c:when test="${not empty loginID}">
                 <div class="content">
-                    <p class="loginFont">${loginName}님 환영합니다!</p>
                     <button class="create-story-btn btn btn-warning">새로운 이야기</button>
                     <a href="/logout.members" class="logout-btn btn btn-danger">로그아웃</a>
                 </div>

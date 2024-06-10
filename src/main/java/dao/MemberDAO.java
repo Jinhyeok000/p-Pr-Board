@@ -61,6 +61,36 @@ public class MemberDAO {
 	}
 	
 	/*
+	 * 아이디 찾기 메소드
+	 * @author Jin hyeok Jo
+	 */
+    public boolean findId(String id) throws Exception {
+        String sql = "select * from p_member where id = ?";
+        try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
+            pstat.setString(1, id);
+            try (ResultSet rs = pstat.executeQuery();) {
+                return rs.next();
+            }
+        }
+    }
+
+	/*
+	 * 로그인 메소드
+	 * @author Jin hyeok Jo
+	 */
+    public boolean loginId(String id, String pw) throws Exception {
+        String sql = "select * from p_member where id = ? and pw = ?";
+        try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
+            pstat.setString(1, id);
+            pstat.setString(2, pw);
+            try (ResultSet rs = pstat.executeQuery();) {
+                return rs.next();
+            }
+        }
+    }
+
+	
+	/*
 	 * 회원 정보 마이페이지 출력 메소드
 	 * @author Ji Yeon Kim
 	 */
