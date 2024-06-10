@@ -35,6 +35,7 @@ public class RegisterController extends HttpServlet {
 			if (cmd.equals("/register.register")) {
 				String id = request.getParameter("id");
 				String pw = util.getSHA512(request.getParameter("pw"));
+				System.out.println(pw);
 				String name = request.getParameter("name");
 				String phone = request.getParameter("phone");
 				String email = request.getParameter("email");
