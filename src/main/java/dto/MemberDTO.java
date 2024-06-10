@@ -26,6 +26,11 @@ public class MemberDTO {
 		this.profile_img = profile_img;
 		this.user_level = user_level;
 	}
+	
+	public MemberDTO() {
+		super();
+	}
+	
 	public String getId() {
 		return id;
 	}
