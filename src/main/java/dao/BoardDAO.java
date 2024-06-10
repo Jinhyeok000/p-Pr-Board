@@ -51,10 +51,9 @@ public class BoardDAO {
 			return list;
 		}
 	}
-	
 	//한 페이지의 글 목록 반환
 		public List<BoardDTO> getList(int n, int m) throws Exception{
-			String sql = "select * from (select board.*, row_number() over(order by seq desc) rown from board) where rown between ? and ?";
+			String sql = "select * from (select pboard.*, row_number() over(order by seq desc) rown from pboard) where rown between ? and ?";
 			
 			try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 				pstat.setInt(1, n);
@@ -67,7 +66,6 @@ public class BoardDAO {
 						String title = rs.getString(3);
 						String contents = rs.getString(4);
 						Timestamp write_date = rs.getTimestamp(5);
-
 						BoardDTO ctt = new BoardDTO(seq, writer, title, contents, write_date);
 						list.add(ctt);
 					}
@@ -75,8 +73,6 @@ public class BoardDAO {
 				}
 			}
 		}
-		
-	
 	// 게시판 글 작성
 	   public int insert(BoardDTO dto) throws Exception {
 
@@ -93,8 +89,4 @@ public class BoardDAO {
 
 		      }
 		   }
-
-	
-
-	
 }
