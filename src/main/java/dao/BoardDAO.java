@@ -1,10 +1,17 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
+import dto.BoardDTO;
 
 public class BoardDAO {
 	private static BoardDAO instance;
@@ -25,6 +32,24 @@ public class BoardDAO {
 		return ds.getConnection();
 	}
 
-	//이곳부터 메서드를 넣으면 됩니다.
+	//전체 글 목록 반환
+	public List<BoardDTO> getList() throws Exception{
+		String sql = "select * from pboard order by write_date desc";
+		
+		try(Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);
+				ResultSet rs = pstat.executeQuery();){
+			List<BoardDTO> list = new ArrayList<>();
+			while(rs.next()) {
+				int seq = rs.getInt("seq");
+				String writer = rs.getString("writer");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				Timestamp write_date = rs.getTimestamp("write_date");
+				
+				list.add(new BoardDTO(seq, writer, title, content, write_date));
+			}
+			return list;
+		}
+	}
 	
 }
