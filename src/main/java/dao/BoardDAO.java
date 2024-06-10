@@ -53,7 +53,7 @@ public class BoardDAO {
 	}
 	//한 페이지의 글 목록 반환
 		public List<BoardDTO> getList(int n, int m) throws Exception{
-			String sql = "select * from (select board.*, row_number() over(order by seq desc) rown from board) where rown between ? and ?";
+			String sql = "select * from (select pboard.*, row_number() over(order by seq desc) rown from pboard) where rown between ? and ?";
 			
 			try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 				pstat.setInt(1, n);
