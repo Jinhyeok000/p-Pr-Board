@@ -39,7 +39,7 @@
 	</table>
 	<script>
 		$("#writeBtn").on("click", function(){
-			location.href = "/board/writeBoard.jsp";
+			location.href = "/Board/writeBoard.jsp";
 		});
 		
 		function getNaviString() {

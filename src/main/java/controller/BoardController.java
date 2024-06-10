@@ -42,7 +42,7 @@ public class BoardController extends HttpServlet {
 				request.setAttribute("record_total_count", manager.getList().size());
 				request.setAttribute("list", list);
 				
-				request.getRequestDispatcher("/board/mainBoard.jsp").forward(request, response);
+				request.getRequestDispatcher("/Board/mainBoard.jsp").forward(request, response);
 			}
 			
 			
