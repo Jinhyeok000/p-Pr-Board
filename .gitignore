@@ -1,8 +1,9 @@
+# Created by https://www.toptal.com/developers/gitignore/api/java,git,windows,eclipse
+# Edit at https://www.toptal.com/developers/gitignore?templates=java,git,windows,eclipse
+
 .project
 .classpath
 
-# Created by https://www.toptal.com/developers/gitignore/api/java,git,windows,eclipse
-# Edit at https://www.toptal.com/developers/gitignore?templates=java,git,windows,eclipse
 
 ### Eclipse ###
 .metadata
@@ -138,3 +139,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/java,git,windows,eclipse
+/build/
