@@ -1,7 +1,10 @@
 package dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -56,5 +59,41 @@ public class MemberDAO {
         }
         return result;
 	}
+	
+	/*
+	 * 회원 정보 마이페이지 출력 메소드
+	 * @author Ji Yeon Kim
+	 */
+	
+	public MemberDTO selectMyMemberdata(String target) throws Exception{
+		
+		String sql = "select * from p_member where id=?";
+		
+				try(Connection con = this.getConnection();
+						PreparedStatement pstst = con.prepareStatement(sql);){
+					pstst.setString(1, target);
+					
+					try(ResultSet rs= pstst.executeQuery();){
+						MemberDTO dto = null;
+						while (rs.next()) {
+							String id = rs.getString("id");
+							String pw = rs.getString("pw");
+							String name = rs.getString("name");
+							String phone = rs.getString("phone");
+							String email = rs.getString("email");
+							String gender = rs.getString("gender");
+							Timestamp join_date = rs.getTimestamp("join_data");
+							String profile_img = rs.getString("profile_img");
+							int user_level = rs.getInt("user_level");
+							
+							dto = new MemberDTO(id, pw, name, phone, email, gender ,join_date, profile_img,user_level);
+						}
+						return dto;
+					}
+				}
+				
+	}
+	
+	
 
 }

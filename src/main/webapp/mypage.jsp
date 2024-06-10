@@ -70,6 +70,14 @@ font-size:22px;
 	width: 150px;
 	}
 
+#level{
+display:flex;
+justify-content: center;
+align-items: center;
+}
+
+.col-3{
+font-weight: bold;}
 </style>
 <body>
 
@@ -78,6 +86,12 @@ font-size:22px;
 		<div id="profile_img_box" class="row"> 프로필 이미지
 			<div id="profile_img" class="col"></div>
 			<input type="hidden" id="profile_img"><br>
+		</div>
+		<div id="level" class="row level_row">
+			<div class="col-3">Level</div>
+			<div class="col-3">
+				<input type="hidden" placeholder="레벨" val="1">1
+			</div>
 		</div>
 		<hr>
 		<div id="id" class="row">
@@ -88,25 +102,25 @@ font-size:22px;
 		</div>
 		<div id="name" class="row">
 			<div class="col-4">이름</div>
-			<div class="col-8">
+			<div class="col-8 update">
 				<input type="hidden" placeholder="이름">이름
 			</div>
 		</div>
 		<div id="phone" class="row">
 			<div class="col-4">폰번호</div>
-			<div class="col-8">
+			<div class="col-8 update">
 				<input type="hidden" placeholder="핸드폰번호">핸드폰번호
 			</div>
 		</div>
 		<div id="email" class="row">
 			<div class="col-4">이메일</div>
-			<div class="col-8">
+			<div class="col-8 update">
 				<input type="hidden" placeholder="이메일">이메일
 			</div>
 		</div>
-			<div id="sex" class="row">
+			<div id="gender" class="row">
 				<div class="col-4">성 별</div>
-				<div class="col-8">
+				<div class="col-8 update">
 					<input type="hidden" placeholder="성별">성별
 				</div>
 			</div>
@@ -117,8 +131,17 @@ font-size:22px;
 				</div>
 			</div>
 			<div class="row" id="btn_row">
-			<button id="update_btn" class="col">수정하기</button>
+			<button id="update_btn" class="col" type="button">수정하기</button>
+			<button id="delete_btn" class="col" type="button">삭제하기</button>
 		</div>
-		</div>
+	</div>
+	<script>
+		$("#update_btn").on("click",function(){
+			
+			$(".update").attr("contenteditable","true");
+			$(".update").css({"border":"1px solid black"});
+			
+		})
+	</script>
 </body>
 </html>

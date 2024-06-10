@@ -14,7 +14,9 @@
 <style>
 	td{
 		border : 1px solid black;
+
 		text-align : center;
+
 	}
 </style>
 <body>
