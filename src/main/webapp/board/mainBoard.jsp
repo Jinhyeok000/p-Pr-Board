@@ -14,6 +14,9 @@
 <style>
 	td{
 		border : 1px solid black;
+
+		text-align : center;
+
 	}
 </style>
 <body>
@@ -26,7 +29,15 @@
 				<td>작성일</td>
 			</tr>
 		</thead>	
-		<tbody>
+		<tbody id="viewList">
+			<c:forEach var="dto" items="${list}">
+				<tr>
+					<td>${dto.seq}</td>
+					<td>${dto.title}</td>
+					<td>${dto.writer}</td>
+					<td>${dto.write_date}</td>
+				</tr>
+			</c:forEach>
 		</tbody>
 		<tr align="center">
 			<td colspan="4">

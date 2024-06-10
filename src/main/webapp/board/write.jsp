@@ -11,7 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
 <body>
-	<form action="/write.board" method="post" enctype="multipart/form-data">
+	<form action="/write.board" method="post">
 		<table border="1" width="800" align="center">
 			<thead>
 				<tr>
@@ -33,13 +33,12 @@
 			<tbody>
 				<tr colspan="5" height="400px">
 					<td colspan="5" height="400px">
-						<textarea placeholder="글 내용을 입력하세요" style="width: 90%; height:90%; border:none; resize:none;" name="contents" id="filelist">
+						<textarea placeholder="글 내용을 입력하세요" style="width: 90%; height:90%; border:none; resize:none;" name="content" id="filelist">
 						</textarea>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="5">
-						<input type="file" name="file" multiple style="float:left;"><br>
 						<a href="/list.board">
 							<input type="button" value="목록으로" style="float:right;">
 							
