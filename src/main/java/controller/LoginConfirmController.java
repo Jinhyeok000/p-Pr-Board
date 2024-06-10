@@ -61,21 +61,21 @@ public class LoginConfirmController extends HttpServlet {
 //
 //            }
             
-//            if(cmd.equals("/login.members")) {
-//                String id = request.getParameter("id");
-//                String pw = util.getSHA512(request.getParameter("pw"));
-//                MemberDTO dto = dao.selectAll(id);
-//                String name = dto.getName();
-//                
-//                boolean result = dao.loginId(id, pw);
-//                if(result) {
-//                    HttpSession session = request.getSession();
-//                    session.setAttribute("loginID", id);
-//                    session.setAttribute("loginName", name);
-//                   
-//                }
-//                response.sendRedirect("/index.jsp");
-//            }
+            if(cmd.equals("/login.login")) {
+                String id = request.getParameter("id");
+                String pw = util.getSHA512(request.getParameter("pw"));
+                MemberDTO dto = dao.selectAll(id);
+                String name = dto.getName();
+                
+                boolean result = dao.loginId(id, pw);
+                if(result) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("loginID", id);
+                    session.setAttribute("loginName", name);
+                   
+                }
+                response.sendRedirect("/index.jsp");
+            }
 //
 //            if(cmd.equals("/logout.members")) {
 //                HttpSession session = request.getSession();

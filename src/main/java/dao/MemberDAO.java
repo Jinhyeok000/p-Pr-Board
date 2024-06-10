@@ -39,7 +39,7 @@ public class MemberDAO {
 	 * @author Jin hyeok Jo
 	 */
 	public int registerMember(MemberDTO dto) throws Exception{
-        String sql = "insert into members values(?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into p_member values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int result = 0;
         try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
             pstat.setString(1, dto.getId());
@@ -47,9 +47,10 @@ public class MemberDAO {
             pstat.setString(3, dto.getName());
             pstat.setString(4, dto.getPhone());
             pstat.setString(5, dto.getEmail());
-            pstat.setTimestamp(6, dto.getJoin_date());
-            pstat.setString(7, dto.getProfile_img());
-            pstat.setInt(8, dto.getUser_level());
+            pstat.setString(6, dto.getGender());
+            pstat.setTimestamp(7, dto.getJoin_date());
+            pstat.setString(8, dto.getProfile_img());
+            pstat.setInt(9, dto.getUser_level());
 
             result = pstat.executeUpdate();
         }

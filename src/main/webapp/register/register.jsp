@@ -157,10 +157,6 @@
                     <label for="email">이메일</label>
                     <input type="email" id="email" name="email" placeholder="이메일" required>
                 </div>
-                <div class="form-group">
-                    <label for="email">이메일</label>
-                    <input type="email" id="email" name="email" placeholder="이메일" required>
-                </div>
                     <div class="radio-group">
                         <label>
                             <input type="radio" id="male" name="gender" value="male">

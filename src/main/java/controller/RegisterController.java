@@ -40,10 +40,8 @@ public class RegisterController extends HttpServlet {
 				String email = request.getParameter("email");
 				String gender = request.getParameter("gender");
 				Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-				String profile_img = request.getParameter("profile_img");
-				int user_level = Integer.parseInt(request.getParameter("user_level"));
 				int result = dao.registerMember(
-						new MemberDTO(id, pw, name, phone, email, gender, currentTime, profile_img, user_level));
+						new MemberDTO(id, pw, name, phone, email, gender, currentTime, null, 0));
 
 				response.sendRedirect("/index.jsp");
 			}
