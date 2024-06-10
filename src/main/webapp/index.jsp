@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>Startup Dashboard</title>
@@ -98,7 +98,7 @@
                 <a href="/myPage.members" class="myPage btn btn-primary">My Page</a>
             </c:when>
             <c:otherwise>
-                <a href="/members/login.jsp" class="login btn btn-primary">Login</a>
+                <a href="/login/login.jsp" class="login btn btn-primary">Login</a>
             </c:otherwise>
         </c:choose>
     </header>
@@ -143,3 +143,4 @@
     </script>
 </body>
 </html>
+
