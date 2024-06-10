@@ -29,6 +29,7 @@ public class ReplyDAO {
 		Context ctx=new InitialContext();
 		DataSource ds=(DataSource)ctx.lookup("java:comp/env/jdbc/oracle");
 		return ds.getConnection();
+		//something
 	}
 
 	//1. 글 추가하기 insert
