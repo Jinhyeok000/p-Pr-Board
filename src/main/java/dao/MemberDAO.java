@@ -66,7 +66,7 @@ public class MemberDAO {
 	
 	public MemberDTO selectMyMemberdata(String target) throws Exception{
 		
-		String sql = "select * from p-memebr where id=?";
+		String sql = "select * from p_member where id=?";
 		
 				try(Connection con = this.getConnection();
 						PreparedStatement pstst = con.prepareStatement(sql);){
