@@ -27,9 +27,28 @@ public class BoardController extends HttpServlet {
 
 		
 		try {
+			//메인페이지 각 페이지에 표시될 게시글 로드
 			if(cmd.equals("/list.board")){
-				List<BoardDTO> list = manager.getList();
+				String cpage = request.getParameter("cpage");
+				if (cpage == null) {
+					cpage = "1";
+				}
+				int cpageInt = Integer.parseInt(cpage);
 				
+				int recordCountPerPage = 10;
+				int naviCountPerPage = 10;
+				int startNum = cpageInt * recordCountPerPage - (recordCountPerPage-1);
+				int endNum = cpageInt * recordCountPerPage;
+				
+				List<BoardDTO> list = manager.getList(startNum, endNum);
+				
+				request.setAttribute("cpage", cpageInt);
+				request.setAttribute("record_count_per_page", recordCountPerPage);
+				request.setAttribute("navi_count_per_page", naviCountPerPage);
+				request.setAttribute("record_total_count", manager.getList().size());
+				request.setAttribute("list", list);
+				
+				request.getRequestDispatcher("/Board/mainBoard.jsp").forward(request, response);
 				
 			} else if(cmd.equals("/write.board")) {
 				HttpSession session = request.getSession();
@@ -40,9 +59,7 @@ public class BoardController extends HttpServlet {
 				int result = manager.insert(new BoardDTO(0,writer,title,content,null));
 				
 				response.sendRedirect("/list.board");
-				
-			}
-			
+			}		
 			
 		}catch(Exception e) {
 			e.printStackTrace();

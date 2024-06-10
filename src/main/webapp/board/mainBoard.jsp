@@ -11,6 +11,11 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <title>Insert title here</title>
 </head>
+<style>
+	td{
+		border : 1px solid black;
+	}
+</style>
 <body>
 	<table border="1" align="center">
 		<thead>
@@ -23,13 +28,18 @@
 		</thead>	
 		<tbody>
 		</tbody>
-		<tr>
-			<td><button type="button" id="writeBtn">글쓰기</button></td>
+		<tr align="center">
+			<td colspan="4">
+				<div id="navi"></div>
+			</td>
+		</tr>
+		<tr align="center">
+			<td colspan="4"><button type="button" id="writeBtn">글쓰기</button></td>
 		</tr>
 	</table>
 	<script>
 		$("#writeBtn").on("click", function(){
-			location.href = "writeBoard.jsp";
+			location.href = "/Board/writeBoard.jsp";
 		});
 		
 		function getNaviString() {
@@ -87,7 +97,7 @@
 		
 		$(document).ready(function(){
 			let naviString = getNaviString();
-			$("#naviBox").html(naviString);
+			$("#navi").html(naviString);
 		});
 	
 	</script>
